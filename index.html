@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medical Alert: In Case of Emergency</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #fff5f5; color: #333; margin: 0; padding: 20px; text-align: center; }
+    h1 { color: #c62828; }
+    button { margin: 10px; padding: 15px 25px; font-size: 1em; background: #c62828; color: white; border: none; border-radius: 8px; cursor: pointer; }
+    #content { display: none; margin-top: 20px; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ccc; }
+    input[type='password'] { padding: 8px; font-size: 1em; }
+  </style>
+</head>
+<body>
+  <h1>Medical Alert: In Case of Emergency</h1>
+  <p>This page contains critical medical information.<br>Select your role to proceed:</p>
+
+  <button onclick="showContent('responder')">First Responder</button>
+  <button onclick="showContent('medical')">Medical Staff</button>
+  <button onclick="showContent('pharmacy')">Pharmacist</button>
+  <button onclick="showTigerPrompt()">Family Member</button>
+  <button onclick="showContent('bystander')">Friend or Bystander</button>
+  <button onclick="showContent('owner')">I Am Tom</button>
+
+  <div id="content"></div>
+
+  <script>
+    function showContent(role) {
+      let html = '';
+      switch (role) {
+        case 'responder':
+          html = `
+            <h2>First Responder Info</h2>
+            <ul>
+              <li><strong>NO BP/IV in RIGHT ARM</strong></li>
+              <li>Allergic to Morphine</li>
+              <li>Kidney Transplant Recipient</li>
+              <li>Diabetic</li>
+              <li>Medical Devices: Medtronic Insulin Pump, Medtronic CGM</li>
+              <li>Preferred Hospital: Banner Desert – Dobson & US-60, Mesa, AZ</li>
+              <li>Dr. Jeffery Willden – 480-981-6141</li>
+              <li>Emergency Contact: Sharon Nolan – 480-352-1076</li>
+            </ul>`;
+          break;
+        case 'medical':
+          html = `
+            <h2>Medical Staff Info</h2>
+            <ul>
+              <li>All First Responder info plus:</li>
+              <li>Nephrologist: Dr. Sanjay Lamba – 480-834-9039</li>
+              <li>Endocrinologist: Dr. Krishna M. Pinnamaneni – 480-838-2277</li>
+              <li>Medications: Insulin, Anti-rejection meds (more in secure section)</li>
+              <li>Medical Devices: Medtronic Insulin Pump, Medtronic CGM</li>
+            </ul>`;
+          break;
+        case 'pharmacy':
+          html = `
+            <h2>Pharmacist Info</h2>
+            <ul>
+              <li>Allergy: Morphine</li>
+              <li>Conditions: Diabetes, Kidney Transplant</li>
+              <li>Medications: Insulin, Immunosuppressants</li>
+            </ul>`;
+          break;
+        case 'bystander':
+          html = `
+            <h2>For Friends or Bystanders</h2>
+            <p>Thank you for checking on me. Please contact my wife Sharon Nolan at 480-352-1076. Let medical staff know:</p>
+            <ul>
+              <li>I am diabetic</li>
+              <li>I have had a kidney transplant</li>
+              <li>Do NOT use my right arm for blood pressure or IV</li>
+              <li>I am allergic to Morphine</li>
+            </ul>`;
+          break;
+        case 'owner':
+          html = `<h2>I Am Tom</h2><p>You can edit this file on GitHub to update your info anytime.</p>`;
+          break;
+      }
+      document.getElementById('content').innerHTML = html;
+      document.getElementById('content').style.display = 'block';
+    }
+
+    function showTigerPrompt() {
+      const pw = prompt("Please enter Tom's favorite animal to unlock personal info:");
+      if (pw && pw.toLowerCase() === 'tiger') {
+        showContentTiger();
+      } else {
+        alert('Access denied.');
+      }
+    }
+
+    function showContentTiger() {
+      document.getElementById('content').innerHTML = `
+        <h2>Family Member Access</h2>
+        <p><strong>Name:</strong> Tom Nolan</p>
+        <p><strong>Emergency Contact:</strong> Sharon Nolan (Wife)<br/>Home: 480-813-6249 | Cell: 480-352-1076</p>
+        <p><strong>Doctors:</strong><br/>
+        Dr. Jeffery Willden – 480-981-6141<br/>
+        Dr. Sanjay Lamba – 480-834-9039<br/>
+        Dr. Krishna M. Pinnamaneni – 480-838-2277</p>
+        <p><strong>Full Medication List:</strong><br/>Insulin, Anti-rejection meds, and others (details can be added here)</p>
+        <p><strong>Medical Devices:</strong><br/>Medtronic Insulin Pump, Medtronic CGM</p>
+        <p><strong>Photo ID:</strong><br/>(Add photo in site folder)</p>`;
+      document.getElementById('content').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
